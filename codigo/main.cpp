@@ -18,21 +18,34 @@ int** inicializarM(int n) {
     return M;
 }
 
-int** rotarM(int** M, int n) {
+int** rotarM(int** M, int n, int estado) {
     int** M_rotada = new int*[n];
     for(int i = 0; i < n; ++i)
         M_rotada[i] = new int[n];
 
     for(int i = 0; i < n; ++i) {
         for(int j = 0; j < n; ++j) {
-            M_rotada[n-j-1][i] = M[i][j];
+            switch(estado) {
+            case 1:
+                M_rotada[n-j-1][i] = M[i][j];
+                break;
+            case 2:
+                M_rotada[n-i-1][n-j-1] = M[i][j];
+                break;
+            case 3:
+                M_rotada[j][n-i-1] = M[i][j];
+                break;
+            default:
+                M_rotada[i][j] = M[i][j];
+                break;
+            }
         }
     }
     return M_rotada;
 }
 
 int main() {
-    int n = 7;
+    int n = 3;
     int** M = inicializarM(n);
 
     cout << "Matriz original:\n";
@@ -43,9 +56,13 @@ int main() {
         cout << '\n';
     }
 
-    int** M_rotada = rotarM(M, n);
+    int estado;
+    cout << "\ningresa el estado de rotacion (0 = neutro, 1 = rotacion 1, 2 = rotacion 2, 3 = rotacion 3): ";
+    cin >> estado;
 
-    cout << "\nMatriz rotada:\n";
+    int** M_rotada = rotarM(M, n, estado);
+
+    cout << "\nMatriz rotada (estado " << estado << "):\n";
     for(int i = 0; i < n; ++i) {
         for(int j = 0; j < n; ++j) {
             cout << M_rotada[i][j] << ' ';
