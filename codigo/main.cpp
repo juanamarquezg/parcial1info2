@@ -1,82 +1,66 @@
 #include <iostream>
+#include <funciones.h>
 using namespace std;
 
-int** inicializarM(int n) {
-    int** M = new int*[n];
-    for(int i = 0; i < n; ++i)
-        M[i] = new int[n];
-
-    int valor = 1;
-    for(int i = 0; i < n; ++i) {
-        for(int j = 0; j < n; ++j) {
-            if(i == n/2 && j == n/2)
-                M[i][j] = 0;
-            else
-                M[i][j] = valor++;
-        }
+int main()
+{
+    int n,FilaPrincipal ,ColumnaPrincipal,*arreglo;
+    cout << "Ingrese el numero de elementos contando fila, columna y comparacion: " << endl;
+    cin >> n;
+    while (n < 3) {
+        cout << "Ingrese un numero valido: " << endl;
+        cin >> n;
     }
-    return M;
-}
+    int cerradura[n-2];
+    int rotaciones[n-2];
+    arreglo = TomaDeValores(n);
+////    // Prueba TomaDeValores
+//    cout << "el numero de la fila es: " << arreglo[0]<< endl;
+//    cout << "el numero de la columna es: " << arreglo[1]<< endl;
+////    cout << "el ultimo numero de la fila es: " << arreglo[n-1];
+    FilaPrincipal = arreglo[0];
+    ColumnaPrincipal = arreglo[1];
+    //cout <<"fila: "<<FilaPrincipal <<endl << "Columna Principal: " << ColumnaPrincipal;
+    int primervalor= ValidacionImpar(FilaPrincipal, ColumnaPrincipal) ; // Valor maximo impar nxn
+    int **primermatriz=inicializarM(primervalor); // matriz nxn valor
+    FilaPrincipal = FilaPrincipal -1 ;
+    ColumnaPrincipal = ColumnaPrincipal -1;
+    int valorComparacion = primermatriz[FilaPrincipal][ColumnaPrincipal]; // Valor sacado para la comparacion
+    cerradura[0] = primervalor;
+    rotaciones[0] = 0 ;
+    for(int i =1; i <= n-2 ; i++){
+        int valorcomp2 = arreglo[1+i];  // Valor de comparacion -1 , 0 , 1
 
-int** rotarM(int** M, int n, int estado) {
-    int** M_rotada = new int*[n];
-    for(int i = 0; i < n; ++i)
-        M_rotada[i] = new int[n];
 
-    for(int i = 0; i < n; ++i) {
-        for(int j = 0; j < n; ++j) {
-            switch(estado) {
-            case 1:
-                M_rotada[n-j-1][i] = M[i][j];
-                break;
-            case 2:
-                M_rotada[n-i-1][n-j-1] = M[i][j];
-                break;
-            case 3:
-                M_rotada[j][n-i-1] = M[i][j];
-                break;
-            default:
-                M_rotada[i][j] = M[i][j];
-                break;
-            }
-        }
+
+
+//    }
+//    cout <<"el valor primero a comparar es: "<< valorComparacion <<endl ;
+
+//    // Prueba de validacionimpar
+//    cout << "valor impar mayor: " << primervalor << endl;
+
+//     Prueba Primera matriz
+//    cout << "Matriz original:\n";
+//    for(int i = 0; i < primervalor; ++i) {
+//        for(int j = 0; j < primervalor; ++j) {
+//            cout << primermatriz[i][j] << ' ';
+//        }
+//        cout << '\n';
+//    }
+
+//cout << "cerradura "<< cerradura[0] <<" rotaciones:"<<rotaciones[0]<< endl ;
+
+
+
+
+    // Borrado de memoria
+
+    for(int i = 0; i < primervalor; ++i) {
+        delete[] primermatriz[i];
     }
-    return M_rotada;
-}
-
-int main() {
-    int n = 3;
-    int** M = inicializarM(n);
-
-    cout << "Matriz original:\n";
-    for(int i = 0; i < n; ++i) {
-        for(int j = 0; j < n; ++j) {
-            cout << M[i][j] << ' ';
-        }
-        cout << '\n';
-    }
-
-    int estado;
-    cout << "\ningresa el estado de rotacion (0 = neutro, 1 = rotacion 1, 2 = rotacion 2, 3 = rotacion 3): ";
-    cin >> estado;
-
-    int** M_rotada = rotarM(M, n, estado);
-
-    cout << "\nMatriz rotada (estado " << estado << "):\n";
-    for(int i = 0; i < n; ++i) {
-        for(int j = 0; j < n; ++j) {
-            cout << M_rotada[i][j] << ' ';
-        }
-        cout << '\n';
-    }
-
-    for(int i = 0; i < n; ++i) {
-        delete[] M[i];
-        delete[] M_rotada[i];
-    }
-    delete[] M;
-    delete[] M_rotada;
-
+    delete[] primermatriz;
+    delete[] arreglo ;
     return 0;
 }
 
