@@ -101,4 +101,29 @@ int** rotarM(int** M, int n, int estado) {
     }
     return M_rotada;
 }
+bool comparacion(int anterior, int proximo , int comp){
+    bool flag = false;
+    switch(comp){
+        case -1:
+            if (anterior < proximo) return true;
+            else return flag;
+        break;
+
+        case 0:
+            if (anterior == proximo ) return true;
+            else return flag;
+        break;
+
+        case 1:
+            if(anterior > proximo) return true;
+            else return flag;
+        default:
+            return flag;
+    }
+}
+void DeletePuntero(int **ptr,int n)
+{
+    for (int i=0; i<n ; i++) delete[]ptr;
+    delete [] ptr;
+}
 
