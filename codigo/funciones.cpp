@@ -123,7 +123,7 @@ bool comparacion(int anterior, int proximo , int comp){
 }
 void DeletePuntero(int **ptr,int n)
 {
-    for (int i=0; i<n ; i++) delete[]ptr;
+    for (int i=0; i<n ; i++) delete[] ptr[i];
     delete [] ptr;
 }
 

@@ -16,13 +16,10 @@ int main()
     arreglo = TomaDeValores(n);
     int fallaCond = arreglo[2];
 
-////    // Prueba TomaDeValores
-//    cout << "el numero de la fila es: " << arreglo[0]<< endl;
-//    cout << "el numero de la columna es: " << arreglo[1]<< endl;
-////    cout << "el ultimo numero de la fila es: " << arreglo[n-1];
+
     FilaPrincipal = arreglo[0];
     ColumnaPrincipal = arreglo[1];
-    //cout <<"fila: "<<FilaPrincipal <<endl << "Columna Principal: " << ColumnaPrincipal;
+
     int primervalor= ValidacionImpar(FilaPrincipal, ColumnaPrincipal) ; // Valor maximo impar nxn
     if (fallaCond ==1){
             if ((arreglo[0]==1) &&(arreglo[1]<primervalor)){
@@ -38,7 +35,7 @@ int main()
     int valorComparacion = primermatriz[FilaPrincipal][ColumnaPrincipal]; // Valor sacado para la comparacion ubicado segun fila y columna
     cerradura[0] = primervalor;
     rotaciones[0] = 0 ;
-    int copiaFila = FilaPrincipal - 1;
+    int copiaFila = FilaPrincipal - 1;   // fila  5,5,
     int copiaColumna = ColumnaPrincipal - 1 ;
     int copiaValorAnterior = valorComparacion; // Valor de la primera matriz 22
     for(int i =1; i <= n-2 ; i++){
@@ -63,25 +60,29 @@ int main()
                     copiaFila = FilaPrincipal - 1;
                     copiaColumna = ColumnaPrincipal - 1 ;
                     // Borrado de memoria de rotarM
-                    for(int k = 0; k < copiaValor; k++) {
-                        delete[] matrizComparacion[k];
-                    }
-                    delete[] matrizComparacion;
+                    DeletePuntero(matrizComparacion,copiaValor);
+//                    for(int k = 0; k < copiaValor; k++) {
+//                        delete[] matrizComparacion[k];
+//                    }
+//                    delete[] matrizComparacion;
                 }
                 else {
                 // Borrado de memoria de rotarM
-                    for(int k = 0; k < copiaValor; k++) {
-                    delete[] matrizComparacion[k];
-                    }
-                    delete[] matrizComparacion;
+                    DeletePuntero(matrizComparacion,copiaValor);
+//                    for(int k = 0; k < copiaValor; k++) {
+//                    delete[] matrizComparacion[k];
+//                    }
+//                    delete[] matrizComparacion;
                 }
 
 
             }
-        for(int i = 0; i <copiaValor; i++) {
-            delete[] MatrizAnterior[i];
-        }
-        delete[] MatrizAnterior ;
+          DeletePuntero(MatrizAnterior,copiaValor);
+//        for(int i = 0; i <copiaValor; i++) {
+//            delete[] MatrizAnterior[i];
+//        }
+//        delete[] MatrizAnterior ;
+
         }
     }
     cout << "los valores de la cerradura son: " ;
@@ -89,38 +90,18 @@ int main()
         cout << cerradura[p]<<" " ;
 
     }
-    cout << "los valores de las rotaciones son: " ;
+    cout << endl << "los valores de las rotaciones son: " ;
     for(int p =0;p< n-1 ;p++){
         cout << rotaciones[p]<<" " ;
 
     }
-
-//    cout <<"el valor primero a comparar es: "<< valorComparacion <<endl ;
-
-//    // Prueba de validacionimpar
-//    cout << "valor impar mayor: " << primervalor << endl;
-
-//     Prueba Primera matriz
-//    cout << "Matriz original:\n";
 //    for(int i = 0; i < primervalor; ++i) {
-//        for(int j = 0; j < primervalor; ++j) {
-//            cout << primermatriz[i][j] << ' ';
-//        }
-//        cout << '\n';
+//        delete[] primermatriz[i];
 //    }
-
-//cout << "cerradura "<< cerradura[0] <<" rotaciones:"<<rotaciones[0]<< endl ;
-
-
-
-
-    // Borrado de memoria
-
-    for(int i = 0; i < primervalor; ++i) {
-        delete[] primermatriz[i];
-    }
-    delete[] primermatriz;
+//    delete[] primermatriz;
+    DeletePuntero(primermatriz,primervalor);
     delete[] arreglo ;
+    cout << endl ;
     return 0;
 }
 
