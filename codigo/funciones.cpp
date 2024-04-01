@@ -19,6 +19,12 @@ int* TomaDeValores(int n){
             }
             else j =1 ;
         }
+//        while (j == 1){
+//            if ( (c==k[0]&&(c==2))){
+//                cout << "Ingrese un valor valido para la columna" << endl ;
+
+//            }
+//        }
         k[i] = c;// Asignacion al arreglo del dato
     }
     return k; // Retorna un puntero al arreglo de datos iniciales

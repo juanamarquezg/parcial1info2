@@ -21,26 +21,56 @@ int main()
     ColumnaPrincipal = arreglo[1];
 
     int primervalor= ValidacionImpar(FilaPrincipal, ColumnaPrincipal) ; // Valor maximo impar nxn
+    int division = primervalor/2;
     if (fallaCond ==1){
             if ((arreglo[0]==1) &&(arreglo[1]<primervalor)){
                 cout <<" Valor no valido :( " << endl;
                 return 0;
             }
 
-}
+    }
 
     int condicion1, condicion2;
-    if (n >= 5){
-        for (int k = 2; k < n-2 ; k++){
-            condicion1= arreglo[k];
-            condicion2= arreglo[k+1];
-            int condicion3= arreglo[k+2];
-            if (condicion1==1 && condicion2==1 && condicion3==1) {
-                cout << "no se pueden ingresar tres 1 seguidos" << endl;
-                return 0;
+    if (n==4){
+        condicion1 = arreglo[2];
+        condicion2 = arreglo[3];
+        if((condicion1==1)&& (condicion2==1)&&(FilaPrincipal<=division)&&(ColumnaPrincipal>=primervalor-1)){
+            cout <<" Valor no valido :( " << endl;
+            return 0;
         }
     }
-}
+    else if (n == 5){
+        condicion1= arreglo[2];
+        condicion2= arreglo[3];
+        int condicion3= arreglo[4];
+        if (condicion1==1 && condicion2==1 && condicion3==1) {
+            cout << "no se pueden ingresar tres 1 seguidos en este caso" << endl;
+            return 0;
+        }
+        else if((condicion1==1)&& (condicion2==1)&&(FilaPrincipal<=division)&&(ColumnaPrincipal>=primervalor-1)){
+                cout <<" Valor no valido :( " << endl;
+                return 0;
+
+        }
+        else if((condicion1==0)&&(condicion2==1)&& (condicion2==3)&&(FilaPrincipal<=division)&&(ColumnaPrincipal>=primervalor-1)){
+            cout <<" Valor no valido :( " << endl;
+            return 0;
+        }
+
+    }
+    //    els*/e if(n>=6){
+//        for (int k = 2; k+3 < n ; k++){
+//            condicion1= arreglo[k];
+//            condicion2= arreglo[k+1];
+//            int condicion3= arreglo[k+2];
+//            int condicion4= arreglo[k+3];
+//            if((condicion1==1)&& (condicion2==1)&&(FilaPrincipal<=division)&&(ColumnaPrincipal>=primervalor-1)){
+//                cout <<" Valor no valido :( " << endl;
+//                return 0;
+//            }
+
+//        }
+//    }
     int **primermatriz=inicializarM(primervalor); // matriz nxn valor
 
     FilaPrincipal = FilaPrincipal -1 ; // fila de la primera matriz
