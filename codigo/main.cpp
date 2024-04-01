@@ -28,6 +28,19 @@ int main()
             }
 
 }
+
+    int condicion1, condicion2;
+    if (n >= 5){
+        for (int k = 2; k < n-2 ; k++){
+            condicion1= arreglo[k];
+            condicion2= arreglo[k+1];
+            int condicion3= arreglo[k+2];
+            if (condicion1==1 && condicion2==1 && condicion3==1) {
+                cout << "no se pueden ingresar tres 1 seguidos" << endl;
+                return 0;
+        }
+    }
+}
     int **primermatriz=inicializarM(primervalor); // matriz nxn valor
 
     FilaPrincipal = FilaPrincipal -1 ; // fila de la primera matriz
