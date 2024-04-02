@@ -58,6 +58,21 @@ int main()
         }
 
     }
+    else if (n >= 6){
+        for (int k = 2; k < n-3 ; k++){
+            condicion1= arreglo[k];
+            condicion2= arreglo[k+1];
+            int condicion3= arreglo[k+2];
+            int condicion4= arreglo[k+3];
+            if (condicion1==1 && condicion2==1 && condicion3==1 && condicion4==1) {
+                cout << "No se pueden ingresar cuatro 1 seguidos en este caso" << endl;
+                return 0;
+            }
+        }
+    }
+
+
+
     //    els*/e if(n>=6){
 //        for (int k = 2; k+3 < n ; k++){
 //            condicion1= arreglo[k];
