@@ -4,88 +4,26 @@ using namespace std;
 
 int main()
 {
-    int n,FilaPrincipal ,ColumnaPrincipal,*arreglo;
+    bool flag3 = true;
+    while (flag3== true){
+    int n,FilaPrincipal ,ColumnaPrincipal,*arreglo,cerrar,check;
+    cout << endl;
     cout << "Ingrese el numero de elementos contando fila, columna y comparacion: " << endl;
     cin >> n;
     while (n < 3) {
         cout << "Ingrese un numero valido: " << endl;
         cin >> n;
     }
+    check = 3;
     int cerradura[n-1];
     int rotaciones[n-1];
     arreglo = TomaDeValores(n);
-    int fallaCond = arreglo[2];
-
 
     FilaPrincipal = arreglo[0];
     ColumnaPrincipal = arreglo[1];
 
     int primervalor= ValidacionImpar(FilaPrincipal, ColumnaPrincipal) ; // Valor maximo impar nxn
-    int division = primervalor/2;
-    if (fallaCond ==1){
-            if ((arreglo[0]==1) &&(arreglo[1]<primervalor)){
-                cout <<" Valor no valido :( " << endl;
-                return 0;
-            }
 
-    }
-
-    int condicion1, condicion2;
-    if (n==4){
-        condicion1 = arreglo[2];
-        condicion2 = arreglo[3];
-        if((condicion1==1)&& (condicion2==1)&&(FilaPrincipal<=division)&&(ColumnaPrincipal>=primervalor-1)){
-            cout <<" Valor no valido :( " << endl;
-            return 0;
-        }
-    }
-    else if (n == 5){
-        condicion1= arreglo[2];
-        condicion2= arreglo[3];
-        int condicion3= arreglo[4];
-        if (condicion1==1 && condicion2==1 && condicion3==1) {
-            cout << "no se pueden ingresar tres 1 seguidos en este caso" << endl;
-            return 0;
-        }
-        else if((condicion1==1)&& (condicion2==1)&&(FilaPrincipal<=division)&&(ColumnaPrincipal>=primervalor-1)){
-                cout <<" Valor no valido :( " << endl;
-                return 0;
-
-        }
-        else if((condicion1==0)&&(condicion2==1)&& (condicion2==3)&&(FilaPrincipal<=division)&&(ColumnaPrincipal>=primervalor-1)){
-            cout <<" Valor no valido :( " << endl;
-            return 0;
-        }
-
-    }
-    else if (n >= 6){
-        for (int k = 2; k < n-3 ; k++){
-            condicion1= arreglo[k];
-            condicion2= arreglo[k+1];
-            int condicion3= arreglo[k+2];
-            int condicion4= arreglo[k+3];
-            if (condicion1==1 && condicion2==1 && condicion3==1 && condicion4==1) {
-                cout << "No se pueden ingresar cuatro 1 seguidos en este caso" << endl;
-                return 0;
-            }
-        }
-    }
-
-
-
-    //    els*/e if(n>=6){
-//        for (int k = 2; k+3 < n ; k++){
-//            condicion1= arreglo[k];
-//            condicion2= arreglo[k+1];
-//            int condicion3= arreglo[k+2];
-//            int condicion4= arreglo[k+3];
-//            if((condicion1==1)&& (condicion2==1)&&(FilaPrincipal<=division)&&(ColumnaPrincipal>=primervalor-1)){
-//                cout <<" Valor no valido :( " << endl;
-//                return 0;
-//            }
-
-//        }
-//    }
     int **primermatriz=inicializarM(primervalor); // matriz nxn valor
 
     FilaPrincipal = FilaPrincipal -1 ; // fila de la primera matriz
@@ -105,6 +43,7 @@ int main()
             int **MatrizAnterior=inicializarM(copiaValor); // Crea las matrices nxn 3x3--> 5x5 --> 7x7
             copiaFila = copiaFila + 1 ; // hace una copia de la ubicacion en fila
             copiaColumna = copiaColumna + 1;// hace una copia de la ubicacion en columna
+            int iteraccionesAnt = cerradura[i-1];
             for (int estado=0 ; estado < 4 ; estado ++){
                 int **matrizComparacion = rotarM(MatrizAnterior,copiaValor,estado);// Saca una nueva matriz , la siguiente a comparar
                 int ValorCompaProximo = matrizComparacion[copiaFila][copiaColumna]; //Valor de la matriz futura
@@ -135,31 +74,39 @@ int main()
 
 
             }
-          DeletePuntero(MatrizAnterior,copiaValor);
-//        for(int i = 0; i <copiaValor; i++) {
-//            delete[] MatrizAnterior[i];
-//        }
-//        delete[] MatrizAnterior ;
+            DeletePuntero(MatrizAnterior,copiaValor);
+            if(copiaValor - iteraccionesAnt > 20 ){
+                    cout << " Valor invalido " << endl ;
+                    flag = false;
+                    i = i + n ;
+                    check = 2;
+
+            }
 
         }
     }
-    cout << "los valores de la cerradura son: " ;
-    for(int p =0;p< n-1 ;p++){
-        cout << cerradura[p]<<" " ;
+    if (check != 2){
+        cout << "los valores de la cerradura son: " ;
+        for(int p =0;p< n-1 ;p++){
+            cout << cerradura[p]<<" " ;
 
-    }
-    cout << endl << "los valores de las rotaciones son: " ;
-    for(int p =0;p< n-1 ;p++){
-        cout << rotaciones[p]<<" " ;
+        }
+        cout << endl << "los valores de las rotaciones son: " ;
+        for(int p =0;p< n-1 ;p++){
+            cout << rotaciones[p]<<" " ;
 
+        }
     }
-//    for(int i = 0; i < primervalor; ++i) {
-//        delete[] primermatriz[i];
-//    }
-//    delete[] primermatriz;
     DeletePuntero(primermatriz,primervalor);
-    delete[] arreglo ;
+    delete [] arreglo ;
     cout << endl ;
-    return 0;
+    cout << "Ingrese un 1 si quiere cerrar el programa, sino presione otra tecla : " << endl;
+    cin >>cerrar;
+    if ( cerrar == 1) flag3= false;
+
+    }
+    return 0 ;
+
+
 }
 
