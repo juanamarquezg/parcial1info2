@@ -7,13 +7,34 @@ int main()
     bool flag3 = true;
     while (flag3== true){
     int n,FilaPrincipal ,ColumnaPrincipal,*arreglo,cerrar,check;
-    cout << endl;
-    cout << "Ingrese el numero de elementos contando fila, columna y comparacion: " << endl;
-    cin >> n;
-    while (n < 3) {
-        cout << "Ingrese un numero valido: " << endl;
+    while (true) {
+        cout << "Ingrese el numero de elementos contando fila, columna y comparacion: " << endl;
         cin >> n;
+        while (n < 3) {
+            cout << "Ingrese un numero valido (Numero mayor a 3): " ;
+            cin >> n;
+            // Verificar si la entrada es válida
+            if (cin.fail() || n <= 0) {
+                // Imprimir un mensaje de error y limpiar el estado de error del flujo de entrada
+                cout <<endl<< "Error: Valor invalido. Ingrese un entero mayor a 0." << endl;
+                cin.clear();
+                cin.ignore(10000, '\n'); // Descartar la entrada incorrecta del usuario
+            }
+            else if (n>=3)
+                break; // Salir del bucle si la entrada es válida
+
+        }
+        // Verificar si la entrada es válida
+        if (cin.fail() || n <= 0) {
+            // Imprimir un mensaje de error y limpiar el estado de error del flujo de entrada
+            cout <<endl<< "Error: Valor invalido. Ingrese un entero mayor a 0." << endl;
+            cin.clear();
+            cin.ignore(10000, '\n'); // Descartar la entrada incorrecta del usuario
+        }
+        else break; // Salir del bucle si la entrada es válida
     }
+
+
     check = 3;
     int cerradura[n-1];
     int rotaciones[n-1];
@@ -99,8 +120,8 @@ int main()
     }
     DeletePuntero(primermatriz,primervalor);
     delete [] arreglo ;
-    cout << endl ;
-    cout << "Ingrese un 1 si quiere cerrar el programa, sino presione otra tecla : " << endl;
+    cout << endl<<endl ;
+    cout << "Ingrese un [1] si quiere cerrar el programa, sino presione otra tecla : " << endl<<endl;
     cin >>cerrar;
     if ( cerrar == 1) flag3= false;
 

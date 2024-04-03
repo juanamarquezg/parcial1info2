@@ -8,26 +8,54 @@ int* TomaDeValores(int n){
     n = n-1;
     int* k = new int[n];
     for (int i = 0; i<= n; i++){
-        cout << "Ingrese el valor para el elemento " << i + 1 << " : ";
-        cin >> c;
-        int j = i;
-        while (j>=2){
-            if ((c != -1) && (c!=0) && (c!=1)){  // Condicion para verificar que la comparacion si sea un -1,0 y 1
-                cout << "Ingrese un valor valido por favor: " ;
+        // Error de una fila con valor de letra o negativo
+        if (i< 2){
+            while (true) {
+                cout << "Ingrese el valor para el elemento " << i + 1 << " : ";
                 cin >> c;
+                // Verificar si la entrada es válida
+                if (cin.fail() || c <= 0) {
+                    // Imprimir un mensaje de error y limpiar el estado de error del flujo de entrada
+                    cout << "Error: Valor invalido. Ingrese un entero mayor a 0." << endl<< endl;
+                    cin.clear();
+                    cin.ignore(10000, '\n'); // Descartar la entrada incorrecta del usuario
+                    cout << "Ingrese el valor para el elemento " << i + 1 << " : ";
+                    cin >> c;
+                }
+                else {
+                    int j = i ;
+                    while (j == 1){
+                        if ( (2==k[0]&&(c==2))){
+                            cout << "Ingrese un valor valido para la columna: " << endl ;
+                            cin >> c;
+                        }
+                        else j=2;
+                    }
 
+                    break; // Salir del bucle si la entrada es válida
+                }
+                // Excepcion de la matriz 3x3 para escoger el valor 0
             }
-            else j =1 ;
         }
-        while (j == 1){
-            if ( (2==k[0]&&(c==2))){
-                cout << "Ingrese un valor valido para la columna" << endl ;
-                cin >> c;
+        else{
+            cout << "Ingrese el valor para el elemento " << i + 1 << " : ";
+            cin >> c;
+            int j = i;
 
+            // Excepcion de los valores comparativos ,  tienen que ser -1,0,1
+            while (j>=2){
+                if ((c != -1) && (c!=0) && (c!=1)){  // Condicion para verificar que la comparacion si sea un -1,0 y 1
+                    cout << "Ingrese un valor valido por favor(-1,0,1): " ;
+                    cin >> c;
+
+                }
+                else j =1 ;
             }
-            else j=2;
+
+
         }
         k[i] = c;// Asignacion al arreglo del dato
+
     }
     return k; // Retorna un puntero al arreglo de datos iniciales
 }
@@ -41,7 +69,7 @@ int ValidacionImpar(int n , int m ){
         }
         else return n;
     }
-    else if ((n==1) && ( m == 1  )){
+    else if ((n==1) && ( m == 1  )){ // Para no crear una matriz 1x1
         n = 3 ;
         return n;
     }
