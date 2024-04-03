@@ -37,21 +37,18 @@ int* TomaDeValores(int n){
                 // Excepcion de la matriz 3x3 para escoger el valor 0
             }
         }
-        else{
+        else
+        {
             cout << "Ingrese el valor para el elemento " << i + 1 << " : ";
             cin >> c;
-            int j = i;
-
-            // Excepcion de los valores comparativos ,  tienen que ser -1,0,1
-            while (j>=2){
-                if ((c != -1) && (c!=0) && (c!=1)){  // Condicion para verificar que la comparacion si sea un -1,0 y 1
-                    cout << "Ingrese un valor valido por favor(-1,0,1): " ;
-                    cin >> c;
-
-                }
-                else j =1 ;
+            while (cin.fail() || ((c != 0)&&(c!=-1)&&(c!=1))) {
+                // Imprimir un mensaje de error y limpiar el estado de error del flujo de entrada
+                cout << "Error: Valor invalido. Ingrese un entero que sea [-1 , 0 , 1]" << endl<< endl;
+                cin.clear();
+                cin.ignore(10000, '\n'); // Descartar la entrada incorrecta del usuario
+                cout << "Ingrese el valor para el elemento " << i + 1 << " : ";
+                cin >> c;
             }
-
 
         }
         k[i] = c;// Asignacion al arreglo del dato
