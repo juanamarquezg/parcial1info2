@@ -121,10 +121,14 @@ int main()
     DeletePuntero(primermatriz,primervalor);
     delete [] arreglo ;
     cout << endl<<endl ;
-    cout << "Ingrese un [1] si quiere cerrar el programa, sino presione otra tecla : " << endl<<endl;
-    cin >>cerrar;
+    cout << "Ingrese un [1] si quiere cerrar el programa, sino presione cualquier otro numero : " << endl<<endl;
+    while(!(cin >> cerrar)){
+        cin.clear();
+        cin.ignore(10000, '\n');
+        cout << "Error: Valor invalido. Ingrese un numero." << endl<< endl;
+        cout << "Ingrese un [1] si quiere cerrar el programa, sino presione otro numero : " << endl<<endl;
+    }
     if ( cerrar == 1) flag3= false;
-
     }
     return 0 ;
 
