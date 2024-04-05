@@ -9,7 +9,7 @@ int* TomaDeValores(int n){
     int* k = new int[n];
     for (int i = 0; i<= n; i++){
         // Error de una fila con valor de letra o negativo
-        if (i< 2){
+        if (i< 2) {
             while (true) {
                 cout << "Ingrese el valor para el elemento " << i + 1 << " : ";
                 cin >> c;
@@ -57,6 +57,8 @@ int* TomaDeValores(int n){
     return k; // Retorna un puntero al arreglo de datos iniciales
 }
     // Define el tamaño de la primera matriz (el tamaño minimo)
+
+// Toma el valor maximo impar para hacer la matriz minima impar de tamaño
 int ValidacionImpar(int n , int m ){
     if (n>m){
         int validar = n % 2;

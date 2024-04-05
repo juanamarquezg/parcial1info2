@@ -77,35 +77,31 @@ int main()
                     estado = 4; // pa salise del four
                     copiaFila = FilaPrincipal - 1;
                     copiaColumna = ColumnaPrincipal - 1 ;
-                    // Borrado de memoria de rotarM
-                    DeletePuntero(matrizComparacion,copiaValor);
-//                    for(int k = 0; k < copiaValor; k++) {
-//                        delete[] matrizComparacion[k];
-//                    }
-//                    delete[] matrizComparacion;
+                    // Borrado de memoria de ( matriz  proxima a comparar)
+                    DeletePuntero(matrizComparacion,copiaValor);            if(copiaValor - iteraccionesAnt > 20 ){
+                        cout << " Valor invalido " << endl ;
+                        flag = false;
+                        i = i + n ;
+                        check = 2;
+
                 }
                 else {
-                // Borrado de memoria de rotarM
+                // Borrado de memoria de ( matriz  proxima a comparar)
                     DeletePuntero(matrizComparacion,copiaValor);
-//                    for(int k = 0; k < copiaValor; k++) {
-//                    delete[] matrizComparacion[k];
-//                    }
-//                    delete[] matrizComparacion;
+
                 }
 
 
             }
             DeletePuntero(MatrizAnterior,copiaValor);
-            if(copiaValor - iteraccionesAnt > 20 ){
-                    cout << " Valor invalido " << endl ;
-                    flag = false;
-                    i = i + n ;
-                    check = 2;
+            // Condicion por iteracciones para que no salga error
+
 
             }
 
         }
     }
+
     if (check != 2){
         cout << "los valores de la cerradura son: " ;
         for(int p =0;p< n-1 ;p++){
