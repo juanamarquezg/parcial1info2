@@ -55,7 +55,7 @@ int main()
     int copiaFila = FilaPrincipal - 1;   // fila  5,5,
     int copiaColumna = ColumnaPrincipal - 1 ;
     int copiaValorAnterior = valorComparacion; // Valor de la primera matriz 22
-    for(int i =1; i <= n-2 ; i++){
+    for(int i =1; i <= n-2 ; i++) {
         int valorcomp2 = arreglo[1+i];  // Valor de comparacion -1 , 0 , 1
         bool flag = true ;
         int copiaValor = primervalor -2; // Copia el primer valor impar necesario// Copia la primera matriz
@@ -65,7 +65,7 @@ int main()
             copiaFila = copiaFila + 1 ; // hace una copia de la ubicacion en fila
             copiaColumna = copiaColumna + 1;// hace una copia de la ubicacion en columna
             int iteraccionesAnt = cerradura[i-1];
-            for (int estado=0 ; estado < 4 ; estado ++){
+            for (int estado=0 ; estado < 4 ; estado ++) {
                 int **matrizComparacion = rotarM(MatrizAnterior,copiaValor,estado);// Saca una nueva matriz , la siguiente a comparar
                 int ValorCompaProximo = matrizComparacion[copiaFila][copiaColumna]; //Valor de la matriz futura
                 bool flag2 = comparacion(copiaValorAnterior,ValorCompaProximo,valorcomp2);
@@ -74,17 +74,13 @@ int main()
                     rotaciones[i] = estado;
                     copiaValorAnterior = ValorCompaProximo; // el valor anterior se vuelve el proximo
                     flag = false; // pa salirse del while
-                    estado = 4; // pa salise del four
+                    estado = 4; // pa salise del for
                     copiaFila = FilaPrincipal - 1;
                     copiaColumna = ColumnaPrincipal - 1 ;
                     // Borrado de memoria de ( matriz  proxima a comparar)
-                    DeletePuntero(matrizComparacion,copiaValor);            if(copiaValor - iteraccionesAnt > 20 ){
-                        cout << " Valor invalido " << endl ;
-                        flag = false;
-                        i = i + n ;
-                        check = 2;
-
+                    DeletePuntero(matrizComparacion,copiaValor);
                 }
+
                 else {
                 // Borrado de memoria de ( matriz  proxima a comparar)
                     DeletePuntero(matrizComparacion,copiaValor);
@@ -93,11 +89,14 @@ int main()
 
 
             }
-            DeletePuntero(MatrizAnterior,copiaValor);
-            // Condicion por iteracciones para que no salga error
-
-
-            }
+        if(copiaValor - iteraccionesAnt > 20 ){
+            cout << "Valor invalido " << endl ;
+            flag = false;
+            i = i + n ;
+            check = 2;
+        }
+        // Borrado de memoria donde suma de dimensiones
+        DeletePuntero(MatrizAnterior,copiaValor);
 
         }
     }
@@ -125,9 +124,8 @@ int main()
         cout << "Ingrese un [1] si quiere cerrar el programa, sino presione otro numero : " << endl<<endl;
     }
     if ( cerrar == 1) flag3= false;
+
     }
     return 0 ;
-
-
 }
 

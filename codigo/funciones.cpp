@@ -19,22 +19,13 @@ int* TomaDeValores(int n){
                     cout << "Error: Valor invalido. Ingrese un entero mayor a 0." << endl<< endl;
                     cin.clear();
                     cin.ignore(10000, '\n'); // Descartar la entrada incorrecta del usuario
-                    cout << "Ingrese el valor para el elemento " << i + 1 << " : ";
-                    cin >> c;
+
                 }
                 else {
-                    int j = i ;
-                    while (j == 1){
-                        if ( (2==k[0]&&(c==2))){
-                            cout << "Ingrese un valor valido para la columna: " << endl ;
-                            cin >> c;
-                        }
-                        else j=2;
-                    }
 
                     break; // Salir del bucle si la entrada es válida
                 }
-                // Excepcion de la matriz 3x3 para escoger el valor 0
+
             }
         }
         else
